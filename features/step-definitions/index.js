@@ -10,8 +10,10 @@ defineSupportCode(({Given, When, Then}) => {
   });
 
   When('I open the login screen', () => {
-    browser.waitForVisible('button=Ingresar', 5000);
-    browser.click('button=Ingresar');
+	let loginButton = $('button=Ingresar');
+	if(loginButton.isEnabled() && browser.isVisible('button=Ingresar')){
+		browser.click('button=Ingresar');
+	}
   });
 
   When(/^I fill with (.*) and (.*)$/ , (email, password) => {
@@ -35,5 +37,11 @@ defineSupportCode(({Given, When, Then}) => {
 	browser.waitForVisible('.aviso.alert.alert-danger', 10000);
 	var alertText = browser.element('.aviso.alert.alert-danger').getText();
 	expect(alertText).to.include(error);
+  });
+  
+  Then('I expect to log in', () => {
+	browser.waitForVisible('#cuenta', 10000);
+	var account = browser.isVisible('#cuenta')
+	expect(account).to.be.true;
   });
 });
