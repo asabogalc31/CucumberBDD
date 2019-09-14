@@ -1,4 +1,4 @@
-Feature: Login into losestudiantes
+Feature: Login into los estudiantes
     As an user I want to authenticate myself within los estudiantes website in order to rate teachers
 
 Scenario Outline: Login failed
